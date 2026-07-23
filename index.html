@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>anioruberu | Desarrollador de Software</title>
+<!-- Iconos FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Fuente Google Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+--primary-color: #4c89ed;
+--primary-hover: #3b74d1;
+--primary-glow: rgba(76, 137, 237, 0.35);
+--bg-dark: #0d1117;
+--bg-card: #161b22;
+--bg-card-hover: #1c2129;
+--border-color: #30363d;
+--text-main: #f0f6fc;
+--text-muted: #8b949e;
+--accent-green: #2ea44f;
+}
+ * {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Inter', system-ui, -apple-system, sans-serif;
+   scroll-behavior: smooth;
+   }
+   body {
+   background-color: var(--bg-dark);
+   color: var(--text-main);
+   line-height: 1.6;
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+   }
+   .container {
+   width: 100%;
+   max-width: 1100px;
+   margin: 0 auto;
+   padding: 0 1.5rem;
+   }
+   /* --- Header & Navegación --- */
+   header {
+   position: sticky;
+   top: 0;
+   z-index: 100;
+   background-color: rgba(13, 17, 23, 0.85);
+   backdrop-filter: blur(12px);
+   border-bottom: 1px solid var(--border-color);
+   }
+   .nav-container {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   height: 4.5rem;
+   }
+   .nav-logo {
+   display: flex;
+   align-items: center;
+   gap: 0.75rem;
+   text-decoration: none;
+   color: var(--text-main);
+   font-weight: 700;
+   font-size: 1.25rem;
+   }
+   .nav-logo i {
+   color: var(--primary-color);
+   font-size: 1.5rem;
+   }
+   .nav-links {
+   display: flex;
+   gap: 1.5rem;
+   list-style: none;
+   }
+   .nav-links a {
+   color: var(--text-muted);
+   text-decoration: none;
+   font-weight: 500;
+   font-size: 0.95rem;
+   transition: color 0.3s ease;
+   }
+   .nav-links a:hover {
+   color: var(--primary-color);
+   }
+   /* --- Hero Section --- */
+   .hero-section {
+   padding: 5rem 0 3rem;
+   text-align: center;
+   position: relative;
+   }
+   .profile-avatar-container {
+   position: relative;
+   width: 150px;
+   height: 150px;
+   margin: 0 auto 1.5rem;
+   }
+   .profile-avatar {
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   object-fit: cover;
+   border: 4px solid var(--primary-color);
+   box-shadow: 0 0 25px var(--primary-glow);
+   transition: transform 0.3s ease;
+   }
+   .profile-avatar:hover {
+   transform: scale(1.03);
+   }
+   .hero-title {
+   font-size: 2.75rem;
+   font-weight: 800;
+   letter-spacing: -0.02em;
+   margin-bottom: 0.5rem;
+   background: linear-gradient(135deg, #ffffff 0%, var(--text-muted) 100%);
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   }
+   .hero-subtitle {
+   color: var(--primary-color);
+   font-size: 1.25rem;
+   font-weight: 600;
+   margin-bottom: 1rem;
+   }
+   .hero-description {
+   max-width: 680px;
+   margin: 0 auto 1.5rem;
+   color: var(--text-muted);
+   font-size: 1.05rem;
+   line-height: 1.7;
+   }
+   .language-info {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.5rem;
+   background-color: var(--bg-card);
+   border: 1px solid var(--border-color);
+   padding: 0.4rem 1rem;
+   border-radius: 20px;
+   font-size: 0.9rem;
+   color: var(--text-main);
+   margin-bottom: 2rem;
+   }
+   .language-info i {
+   color: var(--primary-color);
+   }
+   .social-buttons {
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
+   gap: 1rem;
+   margin-bottom: 2rem;
+   }
+   .btn {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.6rem;
+   padding: 0.75rem 1.4rem;
+   border-radius: 8px;
+   font-weight: 600;
+   text-decoration: none;
+   font-size: 0.95rem;
+   transition: all 0.3s ease;
+   cursor: pointer;
+   border: none;
+   }
+   .btn-primary {
+   background-color: var(--primary-color);
+   color: #ffffff;
+   box-shadow: 0 4px 14px var(--primary-glow);
+   }
+   .btn-primary:hover {
+   background-color: var(--primary-hover);
+   transform: translateY(-2px);
+   }
+   .btn-outline {
+   background-color: var(--bg-card);
+   color: var(--text-main);
+   border: 1px solid var(--border-color);
+   }
+   .btn-outline:hover {
+   background-color: var(--bg-card-hover);
+   border-color: var(--primary-color);
+   transform: translateY(-2px);
+   }
+   /* --- Secciones Generales --- */
+   section {
+   padding: 4rem 0;
+   border-top: 1px solid var(--border-color);
+   }
+   .section-header {
+   text-align: center;
+   margin-bottom: 3rem;
+   }
+   .section-title {
+   font-size: 2rem;
+   font-weight: 700;
+   display: inline-flex;
+   align-items: center;
+   gap: 0.75rem;
+   }
+   .section-title i {
+   color: var(--primary-color);
+   }
+   /* --- Tech Stack --- */
+   .stack-grid {
+   display: grid;
+   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+   gap: 1.25rem;
+   }
+   .tech-card {
+   background-color: var(--bg-card);
+   border: 1px solid var(--border-color);
+   border-radius: 12px;
+   padding: 1.25rem;
+   text-align: center;
+   transition: all 0.3s ease;
+   }
+   .tech-card:hover {
+   border-color: var(--primary-color);
+   transform: translateY(-4px);
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+   }
+   .tech-icon {
+   font-size: 2.25rem;
+   margin-bottom: 0.75rem;
+   }
+   .tech-name {
+   font-weight: 600;
+   font-size: 0.95rem;
+   }
+   /* Color de Iconos Tecnológicos */
+   .icon-html-std { color: #e34f26; }
+   .icon-css-std { color: #1572b6; }
+   .fa-html5 { color: #e34f26; }
+   .fa-css3-alt { color: #1572b6; }
+   .fa-js { color: #f7df1e; }
+   .fa-react { color: #61dafb; }
+   .icon-ts { color: #3178c6; font-weight: bold; font-size: 1.8rem; }
+   .icon-next { color: #ffffff; font-weight: bold; font-size: 1.8rem; }
+   /* --- Proyectos --- */
+   .projects-grid {
+   display: grid;
+   grid-template-columns: 1fr;
+   gap: 2rem;
+   }
+   .project-card {
+   background-color: var(--bg-card);
+   border: 1px solid var(--border-color);
+   border-radius: 16px;
+   overflow: hidden;
+   display: grid;
+   grid-template-columns: 1fr;
+   transition: border-color 0.3s ease;
+   }
+   .project-card:hover {
+   border-color: var(--primary-color);
+   }
+   .project-content {
+   padding: 2.5rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   }
+   .project-tag {
+   display: inline-flex;
+   align-items: center;
+   gap: 0.4rem;
+   background-color: rgba(76, 137, 237, 0.15);
+   color: var(--primary-color);
+   padding: 0.35rem 0.8rem;
+   border-radius: 20px;
+   font-size: 0.85rem;
+   font-weight: 600;
+   margin-bottom: 1rem;
+   width: fit-content;
+   }
+   .project-title {
+   font-size: 1.75rem;
+   font-weight: 700;
+   margin-bottom: 1rem;
+   }
+   .project-description {
+   color: var(--text-muted);
+   font-size: 0.98rem;
+   margin-bottom: 1.5rem;
+   line-height: 1.6;
+   }
+   .project-features {
+   list-style: none;
+   margin-bottom: 1.5rem;
+   }
+   .project-features li {
+   color: var(--text-main);
+   font-size: 0.9rem;
+   margin-bottom: 0.5rem;
+   display: flex;
+   align-items: center;
+   gap: 0.5rem;
+   }
+   .project-features li i {
+   color: var(--accent-green);
+   }
+   /* --- Footer --- */
+   footer {
+   margin-top: auto;
+   border-top: 1px solid var(--border-color);
+   padding: 2.5rem 0;
+   background-color: var(--bg-dark);
+   text-align: center;
+   color: var(--text-muted);
+   font-size: 0.9rem;
+   }
+   .footer-content {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 1rem;
+   }
+   /* --- Responsivo --- */
+   @media (max-width: 640px) {
+   .hero-title { font-size: 2.1rem; }
+   .nav-links { display: none; }
+   }
+   </style>
+   </head>
+   <body>
+   <!-- Navegación -->
+   <header>
+   <div class="container nav-container">
+   <a href="#" class="nav-logo">
+   <i class="fas fa-code"></i>
+   <span>anioruberu</span>
+   </a>
+   <ul class="nav-links">
+   <li><a href="#sobre-mi">Sobre mí</a></li>
+   <li><a href="#stack">Tecnologías</a></li>
+   <li><a href="#proyectos">Proyectos</a></li>
+   <li><a href="mailto:anioruberu.contacto@gmail.com">Contacto</a></li>
+   </ul>
+   </div>
+   </header>
+   <!-- Hero Section / Sobre Mí -->
+   <main>
+   <section id="sobre-mi" class="hero-section">
+   <div class="container">
+   <div class="profile-avatar-container">
+   <!-- Foto de Perfil en Marco Circular -->
+   <img src="Developer.jpg" alt="Foto de Perfil anioruberu" class="profile-avatar" onerror="this.onerror=null; this.src='https://via.placeholder.com/150/161b22/4c89ed?text=Developer';">
+   </div>
+   <h1 class="hero-title">anioruberu</h1>
+   <p class="hero-subtitle">Desarrollador de Software</p>
+   <p class="hero-description">
+   Soy desarrollador de software principiante enfocado en el desarrollo Web y aplicaciones móviles para Android. Me dedico a ganar experiencia construyendo y manteniendo proyectos activos para aprender más cada día.
+   </p>
+   <!-- Idiomas Manejados -->
+   <div class="language-info">
+   <i class="fas fa-language"></i>
+   <span>Idiomas: <strong>Español</strong></span>
+   </div>
+   <!-- Botones de Redes Sociales -->
+   <div class="social-buttons">
+   <a href="https://discord.gg/cS5skF7Yn5" target="_blank" class="btn btn-outline" title="Discord: anyorver">
+   <i class="fab fa-discord" style="color: #5865F2;"></i> Discord
+   </a>
+   <a href="https://instagram.com/anioruberu" target="_blank" class="btn btn-outline">
+   <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
+   </a>
+   <a href="mailto:anioruberu.contacto@gmail.com" class="btn btn-primary">
+   <i class="fas fa-envelope"></i> Contactar por Email
+   </a>
+   </div>
+   </div>
+   </section>
+   <!-- Secciones Técnicas: Stack Tecnológico -->
+   <section id="stack">
+   <div class="container">
+   <div class="section-header">
+   <h2 class="section-title">
+   <i class="fas fa-layer-group"></i> Stack Tecnológico
+   </h2>
+   <p style="color: var(--text-muted); margin-top: 0.5rem;">Tecnologías que manejo para el desarrollo de proyectos</p>
+   </div>
+   <div class="stack-grid">
+   <div class="tech-card">
+   <i class="fas fa-code tech-icon icon-html-std"></i>
+   <div class="tech-name">HTML</div>
+   </div>
+   <div class="tech-card">
+   <i class="fas fa-paint-brush tech-icon icon-css-std"></i>
+   <div class="tech-name">CSS</div>
+   </div>
+   <div class="tech-card">
+   <i class="fab fa-html5 tech-icon"></i>
+   <div class="tech-name">HTML5</div>
+   </div>
+   <div class="tech-card">
+   <i class="fab fa-css3-alt tech-icon"></i>
+   <div class="tech-name">CSS3</div>
+   </div>
+   <div class="tech-card">
+   <i class="fab fa-js tech-icon"></i>
+   <div class="tech-name">JavaScript</div>
+   </div>
+   <div class="tech-card">
+   <div class="icon-ts tech-icon">TS</div>
+   <div class="tech-name">TypeScript</div>
+   </div>
+   <div class="tech-card">
+   <i class="fab fa-react tech-icon"></i>
+   <div class="tech-name">React</div>
+   </div>
+   <div class="tech-card">
+   <div class="icon-next tech-icon">N</div>
+   <div class="tech-name">Next.js</div>
+   </div>
+   </div>
+   </div>
+   </section>
+   <!-- Proyectos -->
+   <section id="proyectos">
+   <div class="container">
+   <div class="section-header">
+   <h2 class="section-title">
+   <i class="fas fa-folder-open"></i> Proyectos
+   </h2>
+   <p style="color: var(--text-muted); margin-top: 0.5rem;">Proyectos activos en constante desarrollo y mantenimiento técnico</p>
+   </div>
+   <div class="projects-grid">
+   <div class="project-card">
+   <div class="project-content">
+   <span class="project-tag"><i class="fab fa-android"></i> Aplicación Android</span>
+   <h3 class="project-title">LD Animes</h3>
+   <p class="project-description">
+   Plataforma de streaming de anime optimizada para dispositivos Android. Cuenta con múltiples servidores, lista de favoritos locales e historial de reproducción con actualización constante.
+   </p>
+   <ul class="project-features">
+   <li><i class="fas fa-check-circle"></i> Streaming fluido en resolución HD</li>
+   <li><i class="fas fa-check-circle"></i> Arquitectura ligera compatible con Android 5.0+</li>
+   <li><i class="fas fa-check-circle"></i> Extracción de contenido Web: AnimeFLV, JKAnime, TíoAnime, AnimeFenix, Latanime, Anime-Jl, AnimeAV1</li>
+   </ul>
+   <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+   <a href="https://ldanimes.online/" target="_blank" class="btn btn-primary" style="font-size: 0.85rem;">
+   <i class="fas fa-globe"></i> Ver proyecto
+   </a>
+   </div>
+   </div>
+   </div>
+   </div>
+   </div>
+   </section>
+   </main>
+   <!-- Pie de Página -->
+   <footer>
+   <div class="container footer-content">
+   <p>© <script>document.write(new Date().getFullYear())</script> <strong>anioruberu</strong>. Todos los derechos reservados.</p>
+   <p style="font-size: 0.8rem; color: var(--text-muted);">
+   Contacto: <a href="mailto:anioruberu.contacto@gmail.com" style="color: var(--primary-color); text-decoration: none;">anioruberu.contacto@gmail.com</a>
+   </p>
+   </div>
+   </footer>
+   </body>
+   </html>
+   
