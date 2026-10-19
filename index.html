@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>anioruberu | Desarrollador de Software</title>
+<meta name="description" content="Portafolio de anioruberu: desarrollador de LD Animes y GokuPlay.">
+<meta property="og:title" content="anioruberu | Desarrollador de Software">
+<meta property="og:description" content="Proyectos: LD Animes y GokuPlay.">
+<meta name="theme-color" content="#0d1117">
 <!-- Iconos FontAwesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <!-- Fuente Google Inter -->
@@ -324,6 +328,33 @@
    .hero-title { font-size: 2.1rem; }
    .nav-links { display: none; }
    }
+
+   /* --- Mejoras --- */
+   html { scroll-behavior: smooth; }
+   section { scroll-margin-top: 80px; }
+   .nav-links a.active { color: var(--primary-color); }
+   .project-head { display:flex; align-items:center; gap:1rem; margin-bottom:1rem; }
+   .project-icon { width:64px; height:64px; flex-shrink:0; border-radius:16px; background:var(--bg-dark); border:1px solid var(--border-color); display:flex; align-items:center; justify-content:center; overflow:hidden; font-size:1.8rem; color:var(--primary-color); box-shadow:0 0 18px var(--primary-glow); }
+   .project-icon img { width:100%; height:100%; object-fit:cover; }
+   .project-head .project-title { margin-bottom:0.25rem; }
+   .project-head .project-tag { margin-bottom:0; }
+   .project-card { transition: border-color .3s ease, transform .3s ease, box-shadow .3s ease; }
+   .project-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px var(--primary-glow); }
+   .status { display:inline-flex; align-items:center; gap:.4rem; font-size:.8rem; color:var(--accent-green); margin-left:.5rem; }
+   .status::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--accent-green); animation:pulse 1.6s infinite; }
+   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+   .reveal { opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+   .reveal.visible { opacity:1; transform:none; }
+   .to-top { position:fixed; right:1.2rem; bottom:1.2rem; width:44px; height:44px; border-radius:50%; background:var(--primary-color); color:#fff; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 4px 14px var(--primary-glow); opacity:0; pointer-events:none; transition:opacity .3s; z-index:200; }
+   .to-top.show { opacity:1; pointer-events:auto; }
+   .menu-btn { display:none; background:none; border:1px solid var(--border-color); color:var(--text-main); border-radius:8px; padding:.4rem .7rem; font-size:1.1rem; cursor:pointer; }
+   @media (min-width: 900px) { .projects-grid { grid-template-columns: 1fr 1fr; } }
+   @media (max-width: 640px) {
+   .menu-btn { display:block; }
+   .nav-links.open { display:flex; flex-direction:column; position:absolute; top:100%; left:0; right:0; background:var(--bg-card); border-bottom:1px solid var(--border-color); padding:1rem 1.5rem; gap:1rem; }
+   .nav-container { position:relative; }
+   .project-content { padding:1.6rem; }
+   }
    </style>
    </head>
    <body>
@@ -334,7 +365,8 @@
    <i class="fas fa-code"></i>
    <span>anioruberu</span>
    </a>
-   <ul class="nav-links">
+   <button class="menu-btn" aria-label="Menú" type="button" aria-expanded="false" id="menuBtn"><i class="fas fa-bars"></i></button>
+   <ul class="nav-links" id="navLinks">
    <li><a href="#sobre-mi">Sobre mí</a></li>
    <li><a href="#stack">Tecnologías</a></li>
    <li><a href="#proyectos">Proyectos</a></li>
@@ -362,10 +394,10 @@
    </div>
    <!-- Botones de Redes Sociales -->
    <div class="social-buttons">
-   <a href="https://discord.gg/cS5skF7Yn5" target="_blank" class="btn btn-outline" title="Discord: anyorver">
+   <a href="https://discord.gg/cS5skF7Yn5" target="_blank" rel="noopener" class="btn btn-outline" title="Discord: anyorver">
    <i class="fab fa-discord" style="color: #5865F2;"></i> Discord
    </a>
-   <a href="https://instagram.com/anioruberu" target="_blank" class="btn btn-outline">
+   <a href="https://instagram.com/anioruberu" target="_blank" rel="noopener" class="btn btn-outline">
    <i class="fab fa-instagram" style="color: #E1306C;"></i> Instagram
    </a>
    <a href="mailto:anioruberu.contacto@gmail.com" class="btn btn-primary">
@@ -429,20 +461,49 @@
    <p style="color: var(--text-muted); margin-top: 0.5rem;">Proyectos activos en constante desarrollo y mantenimiento técnico</p>
    </div>
    <div class="projects-grid">
-   <div class="project-card">
+   <div class="project-card reveal">
    <div class="project-content">
+   <div class="project-head">
+   <div class="project-icon"><img src="https://ldanimes.xyz/assets/logo-BGT1Vnit.png" alt="Icono de LD Animes" onerror="this.replaceWith(Object.assign(document.createElement('i'),{className:'fas fa-tv'}))"></div>
+   <div>
+   <h3 class="project-title">LD Animes<span class="status">Activo</span></h3>
    <span class="project-tag"><i class="fab fa-android"></i> Aplicación Android</span>
-   <h3 class="project-title">LD Animes</h3>
+   </div>
+   </div>
    <p class="project-description">
    Plataforma de streaming de anime optimizada para dispositivos Android. Cuenta con múltiples servidores, lista de favoritos locales e historial de reproducción con actualización constante.
    </p>
    <ul class="project-features">
    <li><i class="fas fa-check-circle"></i> Streaming fluido en resolución HD</li>
    <li><i class="fas fa-check-circle"></i> Arquitectura ligera compatible con Android 5.0+</li>
-   <li><i class="fas fa-check-circle"></i> Extracción de contenido Web: AnimeFLV, JKAnime, TíoAnime, AnimeFenix, Latanime, Anime-Jl, AnimeAV1</li>
+   <li><i class="fas fa-check-circle"></i> Extracción de contenido Web: JKanime • TíoAnime • AnimeFLV • Latanime • Anime-Jl • AnimeAV1 • GokuPlay - Streaming sin cortes en cualquier momento</li>
    </ul>
    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-   <a href="https://ldanimes.online/" target="_blank" class="btn btn-primary" style="font-size: 0.85rem;">
+   <a href="https://ldanimes.xyz/" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem;">
+   <i class="fas fa-globe"></i> Ver proyecto
+   </a>
+   </div>
+   </div>
+   </div>
+   <div class="project-card reveal">
+   <div class="project-content">
+   <div class="project-head">
+   <div class="project-icon"><img src="https://gokuplay.xyz/assets/logo-DVj8yjcb.png" alt="Icono de GokuPlay" onerror="this.replaceWith(Object.assign(document.createElement('i'),{className:'fas fa-dragon'}))"></div>
+   <div>
+   <h3 class="project-title">GokuPlay<span class="status">Activo</span></h3>
+   <span class="project-tag"><i class="fas fa-globe"></i> Plataforma Web</span>
+   </div>
+   </div>
+   <p class="project-description">
+   Plataforma web dedicada al universo Dragon Ball. Reúne series y películas de la saga para ver en línea, junto con las noticias oficiales más recientes de la franquicia.
+   </p>
+   <ul class="project-features">
+   <li><i class="fas fa-check-circle"></i> Catálogo completo: Dragon Ball, Z, GT, Super, Daima y películas</li>
+   <li><i class="fas fa-check-circle"></i> Sección de noticias actualizada desde fuentes oficiales</li>
+   <li><i class="fas fa-check-circle"></i> Diseño adaptable a celular, tablet y computadora</li>
+   </ul>
+   <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+   <a href="https://gokuplay.xyz/" target="_blank" rel="noopener" class="btn btn-primary" style="font-size: 0.85rem;">
    <i class="fas fa-globe"></i> Ver proyecto
    </a>
    </div>
@@ -461,6 +522,26 @@
    </p>
    </div>
    </footer>
-   </body>
+   <a href="#" class="to-top" aria-label="Volver arriba"><i class="fas fa-arrow-up"></i></a>
+<script>
+(function(){
+ var btn=document.getElementById('menuBtn'), nav=document.getElementById('navLinks');
+ function setOpen(o){nav.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);btn.innerHTML=o?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';}
+ btn.addEventListener('click',function(e){e.stopPropagation();setOpen(!nav.classList.contains('open'));});
+ nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(e){
+  var id=a.getAttribute('href');
+  if(id.charAt(0)==='#'){var t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}
+  setOpen(false);});});
+ document.addEventListener('click',function(e){if(!nav.contains(e.target))setOpen(false);});
+ var links=nav.querySelectorAll('a[href^="#"]');
+ var so=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){links.forEach(function(l){l.classList.toggle('active',l.getAttribute('href')==='#'+x.target.id);});}});},{rootMargin:'-40% 0px -55% 0px'});
+ document.querySelectorAll('section[id]').forEach(function(s){so.observe(s);});
+})();
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const tt=document.querySelector('.to-top');
+addEventListener('scroll',()=>tt.classList.toggle('show',scrollY>400));
+</script>
+</body>
    </html>
    
